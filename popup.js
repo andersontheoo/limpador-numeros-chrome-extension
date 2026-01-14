@@ -2,22 +2,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const input = document.getElementById('input');
   const output = document.getElementById('output');
   const copyBtn = document.getElementById('copyBtn');
+  const feedback = document.getElementById('feedback');
+
+  function limparNumeros(texto) {
+    return texto.replace(/\D/g, '');
+  }
+
+  function mostrarFeedback(mensagem, tipo = 'success') {
+    feedback.textContent = mensagem;
+    feedback.className = `feedback ${tipo}`;
+    feedback.classList.remove('hidden');
+
+    setTimeout(() => {
+      feedback.classList.add('hidden');
+    }, 2000);
+  }
 
   input.addEventListener('input', () => {
-      const cleaned = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
-      output.value = cleaned;
+    output.value = limparNumeros(input.value);
   });
 
   copyBtn.addEventListener('click', async () => {
-      const textoParaCopiar = output.value;
+    if (!output.value) {
+      mostrarFeedback('Nada para copiar', 'error');
+      return;
+    }
 
-      try {
-          await navigator.clipboard.writeText(textoParaCopiar);
-          // Forneça um feedback visual claro ao usuário
-          alert('Números copiados para a área de transferência!'); // Ou uma mensagem mais sutil no popup
-      } catch (err) {
-          console.error('Falha ao copiar para a área de transferência: ', err);
-          alert('Erro ao copiar para a área de transferência.');
-      }
+    try {
+      await navigator.clipboard.writeText(output.value);
+      mostrarFeedback('Números copiados com sucesso!');
+    } catch (error) {
+      console.error(error);
+      mostrarFeedback('Erro ao copiar', 'error');
+    }
   });
 });

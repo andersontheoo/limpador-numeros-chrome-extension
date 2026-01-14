@@ -1,32 +1,115 @@
+/* ================================
+   Variáveis globais (tema)
+================================ */
+:root {
+  --bg-main: #ffffff;
+  --text-main: #1f2937;
+  --border-default: #e5e7eb;
+
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+
+  --success-bg: #edf7ed;
+  --success-text: #1e4620;
+  --success-border: #b7dfb9;
+
+  --error-bg: #fdecea;
+  --error-text: #5f2120;
+  --error-border: #f1b0b7;
+}
+
+/* ================================
+   Base do popup
+================================ */
 body {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    width: 300px;
-  }
-  
-  textarea {
-    width: 100%;
-    height: 20px;
-    margin-bottom: 10px;
-    resize: none;
-    font-size: 14px;
-    padding: 5px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  h2 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  
+  margin: 0;
+  padding: 12px;
+  width: 320px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* ================================
+   Inputs e textarea
+================================ */
+input,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid var(--border-default);
+  margin-bottom: 8px;
+  resize: none;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* ================================
+   Botão
+================================ */
+button {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: #ffffff;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* ================================
+   Feedback visual
+================================ */
+.feedback {
+  margin-top: 6px;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Visível */
+.feedback:not(.hidden) {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sucesso */
+.feedback.success {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border-color: var(--success-border);
+}
+
+/* Erro */
+.feedback.error {
+  background-color: var(--error-bg);
+  color: var(--error-text);
+  border-color: var(--error-border);
+}
+
+/* Oculto */
+.hidden {
+  display: none;
+}
