@@ -6,10 +6,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>Limpador de Números</h2>
-  <textarea id="input" placeholder="Cole os números aqui..."></textarea>
-  <textarea id="output" placeholder="Resultado limpo..." readonly></textarea>
-  <button id="copyBtn">Copiar Resultado</button>
+  <div class="container">
+  
+  <div class="logo-wrapper">
+  <img src="logo.png" alt="Limpador de Números" />
+  </div>
+
+    <textarea
+      id="input"
+      placeholder="Cole aqui os números com formatação..."
+    ></textarea>
+
+    <textarea
+      id="output"
+      placeholder="Resultado sem formatação"
+      readonly
+    ></textarea>
+
+    <button id="copyBtn">Copiar resultado</button>
+
+    <!-- ISSO É O QUE ESTAVA FALTANDO -->
+    <div id="feedback" class="feedback hidden"></div>
+  </div>
 
   <script src="popup.js"></script>
 </body>
